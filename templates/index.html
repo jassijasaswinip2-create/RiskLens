@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safety Incident Upload</title>
+   <style>
+    body {
+        margin-top: 0px;
+        margin-left:0px;
+        margin-right:0px;
+        font-family: Arial, sans-serif;
+    }
+
+    div {
+        background-image: url("{{ url_for('static', filename='i2.jpg') }}");
+        color: white;
+        background-color: rgba(37, 36, 36, 0.5);
+        background-size: cover;
+        background-position: center;
+        height: 750px;
+        width: 100%;
+    }
+
+    p {
+        text-align: left;
+        width: 550px;
+        margin-left: 30px;
+        margin-top: 40px;
+        font-size: 25px;
+    }
+
+    h1 {
+        padding-top: 150px;
+        margin-top: 0px;
+        margin-left: 30px;
+        font-size: 60px;
+    }
+
+    #form {
+        background-image: url("{{ url_for('static', filename='i4.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        height: 750px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black;
+    }
+
+    h2 {
+        padding-top: 60px;
+        margin-bottom: 0;
+        font-size: 32px;
+    }
+
+    form {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+        width: 320px;
+    }
+
+    input[type="file"] {
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: none;
+        background-color: #f0f0f0;
+        padding: 8px;
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+</head>
+<body>
+    <div class="begin">
+          <h1>Welcome to RiskLens – Visualizing and predicting workplace risks</h1>
+         <p> Your Partner in Workplace Safety Intelligence</p>
+
+            <p>Gain a clearer understanding of workplace risks through data.
+            Upload incident logs, explore visual insights, and harness predictive models to create a safer, smarter environment.
+
+            Turn past incidents into future prevention.
+
+ </P>
+    </div>
+    <div id="form">
+    <h2>Upload Incident CSV</h2>
+    <form action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data" target="_blank">
+        <input type="file" name="file" required>
+        <button type="submit">Analyze</button>
+    </form>
+    </div>
+</body>
+</html>

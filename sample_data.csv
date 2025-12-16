@@ -1,0 +1,6 @@
+Date,Time,Location,Severity
+2023-01-01,08:30,Warehouse,Low
+2023-01-02,10:00,Office,High
+2023-01-03,14:15,Factory,Medium
+2023-01-04,18:00,Warehouse,High
+2023-01-05,23:30,Factory,Low
