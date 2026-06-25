@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(
+135deg,
+#111827,
+#0F172A);
+
+color:white;
+
+}
+
+/* NAVBAR */
+
+nav{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:25px 50px;
+
+background:
+rgba(15,23,42,.85);
+
+backdrop-filter:blur(20px);
+
+border-bottom:
+1px solid rgba(245,158,11,.2);
+
+}
+
+nav h2{
+
+font-size:30px;
+
+color:#F59E0B;
+
+}
+.nav-btn{
+
+text-decoration:none;
+
+padding:12px 20px;
+
+background:
+rgba(255,255,255,.08);
+
+border-radius:15px;
+
+color:white;
+
+margin-left:15px;
+
+transition:.4s;
+
+}
+
+.nav-btn:hover{
+
+background:#F59E0B;
+
+}
+
+
+/* CONTAINER */
+
+.container{
+
+width:92%;
+
+margin:auto;
+
+padding:50px 0;
+
+}
+
+/* STAT CARDS */
+
+.cards{
+
+display:flex;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+margin-bottom:50px;
+
+}
+
+.card{
+
+flex:1;
+
+min-width:250px;
+
+background:
+rgba(31,41,55,.85);
+
+padding:40px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:
+0 0 20px rgba(245,158,11,.15);
+
+transition:.4s;
+
+}
+
+.card:hover{
+
+transform:
+translateY(-10px);
+
+box-shadow:
+0 0 40px rgba(245,158,11,.4);
+
+}
+.card h1{
+
+font-size:60px;
+
+font-weight:700;
+
+color:#F59E0B;
+
+}
+
+.card:hover h1{
+
+color:#38BDF8;
+
+transition:.4s;
+
+}
+
+
+.card h3{
+
+color:#CBD5E1;
+
+margin-bottom:20px;
+
+}
+
+.card h1{
+
+font-size:55px;
+
+color:#F59E0B;
+
+}
+
+/* TABLE */
+
+.table-box{
+
+background:
+rgba(31,41,55,.85);
+
+padding:40px;
+
+border-radius:25px;
+
+box-shadow:
+0 0 20px rgba(56,189,248,.15);
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th{
+
+background:#1E293B;
+
+padding:18px;
+
+color:#38BDF8;
+
+}
+
+td{
+
+padding:18px;
+
+text-align:center;
+
+border-bottom:
+1px solid rgba(255,255,255,.1);
+
+}
+
+tr:hover{
+
+background:
+rgba(255,255,255,.05);
+
+}
+
+/* BUTTON */
+
+.btn{
+
+padding:15px 30px;
+
+border:none;
+
+border-radius:15px;
+
+background:
+linear-gradient(
+90deg,
+#F59E0B,
+#D97706);
+
+color:white;
+
+cursor:pointer;
+
+font-size:17px;
+
+transition:.4s;
+
+}
+
+.btn:hover{
+
+transform:
+translateY(-5px);
+
+box-shadow:
+0 0 20px #F59E0B;
+
+}
+
+footer{
+
+margin-top:70px;
+
+padding:30px;
+
+text-align:center;
+
+background:#0F172A;
+
+color:#94A3B8;
+
+}
+tr{
+
+transition:.3s;
+
+}
+
+tr:hover{
+
+transform:scale(1.01);
+
+background:
+rgba(56,189,248,.08);
+
+}
+tr{
+
+transition:.3s;
+
+}
+
+tr:hover{
+
+transform:scale(1.01);
+
+background:
+rgba(56,189,248,.08);
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>
+
+🛡️ RiskLens Admin
+
+</h2>
+
+<div>
+
+<a class="nav-btn"
+href="{{ url_for('index') }}">
+
+Dashboard
+
+</a>
+
+<a class="nav-btn"
+href="{{ url_for('profile') }}">
+
+Profile
+
+</a>
+
+<a class="nav-btn"
+href="{{ url_for('logout') }}">
+
+Logout
+
+</a>
+
+</div>
+
+</nav>
+
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+
+<h3>
+
+Total Users
+
+</h3>
+
+<h3>👥 Total Users</h3>
+
+</div>
+
+<div class="card">
+
+<h3>📊 Total Incidents</h3>
+
+<h1>
+
+{{total_incidents}}
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>⚠️ High Risk Cases</h3>
+
+<h1>
+
+{{high_risk}}
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>📍 Dangerous Location</h3>
+
+<h1>
+
+{{danger_location}}
+
+</h1>
+
+</div>
+
+</div>
+<div class="table-box">
+
+<h2>
+
+👥 Registered Users
+
+</h2>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Username</th>
+
+<th>Email</th>
+
+<th>Role</th>
+
+<th>Analyses</th>
+
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+<td>
+
+{{user.id}}
+
+</td>
+
+<td>
+
+{{user.username}}
+
+</td>
+
+<td>
+
+{{user.email}}
+
+</td>
+
+<td>
+
+{{user.role}}
+
+</td>
+
+<td>
+
+{{user.analyses_count}}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<br><br>
+
+<a href="{{ url_for('index') }}">
+
+<button class="btn">
+
+🏠 Dashboard
+
+</button>
+
+</a>
+
+<a href="{{ url_for('search') }}">
+
+<button class="btn">
+
+🔍 Search
+
+</button>
+
+</a>
+
+<a href="{{ url_for('profile') }}">
+
+<button class="btn">
+
+👤 Profile
+
+</button>
+
+</a>
+
+
+</div>
+<footer>
+
+© 2026 RiskLens |
+AI Powered Employee Safety Analytics Platform
+
+</footer>
+
+</body>
+
+</html>
+
+</body>
+</html>

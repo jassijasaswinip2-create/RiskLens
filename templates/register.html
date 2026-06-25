@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account - RiskLens</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            background:linear-gradient(
+                rgba(15,23,42,0.8),
+                rgba(15,23,42,0.8)
+            ),
+            url("{{ url_for('static', filename='i2.jpg') }}");
+
+            background-size:cover;
+            background-position:center;
+        }
+
+        .container{
+
+            width:450px;
+
+            background:white;
+
+            padding:40px;
+
+            border-radius:20px;
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+        }
+
+        .logo{
+
+            text-align:center;
+
+            font-size:35px;
+
+            margin-bottom:10px;
+
+        }
+
+        h1{
+
+            text-align:center;
+
+            color:#2563eb;
+
+            margin-bottom:30px;
+
+        }
+
+        .input-group{
+
+            margin-bottom:20px;
+
+        }
+
+        label{
+
+            display:block;
+
+            margin-bottom:8px;
+
+            font-weight:bold;
+
+            color:#333;
+
+        }
+
+        input{
+
+            width:100%;
+
+            padding:14px;
+
+            border:1px solid #ccc;
+
+            border-radius:10px;
+
+            font-size:16px;
+
+            outline:none;
+
+        }
+
+        input:focus{
+
+            border-color:#2563eb;
+
+        }
+
+        button{
+
+            width:100%;
+
+            padding:15px;
+
+            background:#2563eb;
+
+            color:white;
+
+            border:none;
+
+            border-radius:10px;
+
+            font-size:18px;
+
+            cursor:pointer;
+
+        }
+
+        button:hover{
+
+            background:#1d4ed8;
+
+        }
+
+        p{
+
+            text-align:center;
+
+            margin-top:20px;
+
+            color:#555;
+
+        }
+
+        a{
+
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+        select{
+
+            width:100%;
+            padding:14px;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:16px;
+            outline:none;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        🛡️
+    </div>
+    <h1>Create Account</h1>
+    <form method="POST">
+        <div class="input-group">
+            <label>Username</label>
+            <input
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            required>
+        </div>
+        <div class="input-group">
+            <label>Email</label>
+            <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            required>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input
+            type="password"
+            name="password"
+            placeholder="Create Password"
+            required>
+        </div>
+        <div class="input-group">
+        <label>Role</label>
+
+        <select name="role" required>
+
+            <option value="Employee">
+                Employee
+            </option>
+
+            <option value="Manager">
+                Manager
+            </option>
+
+            <option value="Admin">
+                Admin
+            </option>
+
+        </select>
+
+        </div>
+
+
+        <button type="submit">
+
+            Create Account
+
+        </button>
+
+    </form>
+
+    <p>
+
+        Already have an account?
+
+        <a href="{{ url_for('login') }}">
+
+            Login
+
+        </a>
+
+    </p>
+
+</div>
+
+</body>
+</html>
