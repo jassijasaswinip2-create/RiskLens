@@ -1,305 +1,322 @@
-```html
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Risk Prediction - RiskLens</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
-          rel="stylesheet">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-<style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+    <style>
 
-body{
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
 
-    min-height:100vh;
+        body{
 
-    display:flex;
+            min-height:100vh;
 
-    justify-content:center;
+            display:flex;
 
-    align-items:center;
+            justify-content:center;
 
-    background:
-    radial-gradient(circle at top left,#2c2c2c,#111827);
+            align-items:center;
 
-}
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #2c2c2c,
+                    #111827);
 
-/* Card */
+        }
 
-.container{
+        .container{
 
-    width:500px;
+            width:500px;
 
-    background:rgba(32,32,32,.9);
+            background:rgba(32,32,32,.9);
 
-    border-radius:25px;
+            border-radius:25px;
 
-    padding:45px;
+            padding:45px;
 
-    border:1px solid rgba(245,158,11,.5);
+            border:1px solid rgba(245,158,11,.5);
 
-    box-shadow:
-    0 0 25px rgba(245,158,11,.4);
+            box-shadow:
+                0 0 25px rgba(245,158,11,.4);
 
-    color:white;
+            color:white;
 
-}
+        }
 
-.logo{
+        .logo{
 
-    text-align:center;
+            text-align:center;
 
-    font-size:50px;
+            font-size:50px;
 
-    margin-bottom:15px;
+            margin-bottom:15px;
 
-}
+        }
 
-h1{
+        h1{
 
-    text-align:center;
+            text-align:center;
 
-    margin-bottom:35px;
+            margin-bottom:35px;
 
-    letter-spacing:2px;
+            letter-spacing:2px;
 
-}
+        }
 
-/* Inputs */
+        .input-box{
 
-.input-box{
+            margin-bottom:25px;
 
-    margin-bottom:25px;
+        }
 
-}
+        label{
 
-label{
+            display:block;
 
-    display:block;
+            margin-bottom:8px;
 
-    margin-bottom:8px;
+            color:#F59E0B;
 
-    color:#f59e0b;
+            font-size:13px;
 
-    font-size:13px;
+            letter-spacing:2px;
 
-    letter-spacing:2px;
+        }
 
-}
+        input,
+        select{
 
-input{
+            width:100%;
 
-    width:100%;
+            padding:15px;
 
-    padding:15px;
+            background:#1F2937;
 
-    background:#1f2937;
+            color:white;
 
-    color:white;
+            border:none;
 
-    border:none;
+            border-radius:12px;
 
-    border-radius:12px;
+            outline:none;
 
-    outline:none;
+            font-size:16px;
 
-    font-size:16px;
+        }
 
-}
+        input:focus,
+        select:focus{
 
-input:focus{
+            border:1px solid #F59E0B;
 
-    border:1px solid #f59e0b;
+        }
 
-}
+        button{
 
-/* Button */
+            width:100%;
 
-button{
+            padding:16px;
 
-    width:100%;
+            border:none;
 
-    padding:16px;
+            border-radius:15px;
 
-    border:none;
+            cursor:pointer;
 
-    border-radius:15px;
+            font-size:17px;
 
-    cursor:pointer;
+            font-weight:600;
 
-    font-size:17px;
+            color:white;
 
-    font-weight:600;
+            background:
+                linear-gradient(
+                    90deg,
+                    #D97706,
+                    #F59E0B);
 
-    color:white;
+            transition:.3s;
 
-    background:
-    linear-gradient(
-    90deg,
-    #d97706,
-    #f59e0b);
+        }
 
-}
+        button:hover{
 
-button:hover{
+            box-shadow:
+                0 0 20px #F59E0B;
 
-    box-shadow:
-    0 0 20px #f59e0b;
+        }
 
-}
+        .result{
 
-/* Result */
+            margin-top:30px;
 
-.result{
+            text-align:center;
 
-    margin-top:30px;
+            padding:20px;
 
-    text-align:center;
+            border-radius:15px;
 
-    padding:20px;
+            background:#1F2937;
 
-    border-radius:15px;
+        }
 
-    background:#1f2937;
+        .result h2{
 
-}
+            color:#F59E0B;
 
-.result h2{
+        }
 
-    color:#f59e0b;
+        .back{
 
-}
+            text-align:center;
 
-.back{
+            margin-top:20px;
 
-    text-align:center;
+        }
 
-    margin-top:20px;
+        .back a{
 
-}
+            color:#F59E0B;
 
-.back a{
+            text-decoration:none;
 
-    color:#f59e0b;
+        }
 
-    text-decoration:none;
-
-}
-
-</style>
+    </style>
 
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-<div class="logo">
-🛡️
-</div>
+        <div class="logo">
 
-<h1>RISK PREDICTION</h1>
+            🛡️
 
-<form action="/risk" method="POST">
+        </div>
 
-<div class="input-box">
+        <h1>
 
-<label>HOUR</label>
+            RISK PREDICTION
 
-<input
-type="number"
-name="hour"
-min="0"
-max="23"
-required>
+        </h1>
 
-</div>
+        <form
+            action="/risk"
+            method="POST">
 
+            <div class="input-box">
 
-<div class="input-box">
+                <label>HOUR</label>
 
-<label>DAY OF WEEK</label>
+                <input
+                    type="number"
+                    name="hour"
+                    min="0"
+                    max="23"
+                    required>
 
-<input
-type="number"
-name="day"
-min="0"
-max="6"
-required>
+            </div>
 
-</div>
+            <div class="input-box">
 
+                <label>DAY OF WEEK</label>
 
-<div class="input-box">
+                <input
+                    type="number"
+                    name="day"
+                    min="0"
+                    max="6"
+                    required>
 
-<label>LOCATION CODE</label>
+            </div>
 
-<select name="location">
+            <div class="input-box">
 
-<option value="0">Plant A</option>
+                <label>LOCATION CODE</label>
 
-<option value="1">Plant B</option>
+                <select name="location">
 
-<option value="2">Warehouse</option>
+                    <option value="0">Plant A</option>
 
-<option value="3">Office</option>
+                    <option value="1">Plant B</option>
 
-</select>
+                    <option value="2">Warehouse</option>
 
-</div>
+                    <option value="3">Office</option>
 
-<button>
+                </select>
 
-PREDICT RISK
+            </div>
 
-</button>
+            <button type="submit">
 
-</form>
+                PREDICT RISK
 
-{% if result %}
+            </button>
 
-<div class="result">
+        </form>
 
-<h2>
+        {% if result %}
 
-Prediction Result
+        <div class="result">
 
-</h2>
+            <h2>
 
-<br>
+                Prediction Result
 
-<h1>
+            </h2>
 
-{{ result }}
+            <br>
 
-</h1>
+            <h1>
 
-</div>
+                {{ result }}
 
-{% endif %}
+            </h1>
 
+        </div>
 
-<div class="back">
+        {% endif %}
 
-<a href="{{ url_for('index') }}">
+        <div class="back">
 
-← Back to Dashboard
+            <a href="{{ url_for('index') }}">
 
-</a>
+                ← Back to Dashboard
 
-</div>
+            </a>
 
-</div>
+        </div>
+
+    </div>
 
 </body>
+
 </html>
-```

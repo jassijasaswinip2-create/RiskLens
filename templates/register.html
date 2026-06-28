@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Create Account - RiskLens</title>
 
     <style>
@@ -9,7 +16,7 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
-            font-family:Arial, sans-serif;
+            font-family:Arial,sans-serif;
         }
 
         body{
@@ -22,14 +29,17 @@
 
             align-items:center;
 
-            background:linear-gradient(
-                rgba(15,23,42,0.8),
-                rgba(15,23,42,0.8)
-            ),
-            url("{{ url_for('static', filename='i2.jpg') }}");
+            background:
+                linear-gradient(
+                    rgba(15,23,42,0.8),
+                    rgba(15,23,42,0.8)
+                ),
+                url("{{ url_for('static', filename='i2.jpg') }}");
 
             background-size:cover;
+
             background-position:center;
+
         }
 
         .container{
@@ -60,7 +70,7 @@
 
             text-align:center;
 
-            color:#2563eb;
+            color:#2563EB;
 
             margin-bottom:30px;
 
@@ -84,13 +94,14 @@
 
         }
 
-        input{
+        input,
+        select{
 
             width:100%;
 
             padding:14px;
 
-            border:1px solid #ccc;
+            border:1px solid #CCC;
 
             border-radius:10px;
 
@@ -100,9 +111,10 @@
 
         }
 
-        input:focus{
+        input:focus,
+        select:focus{
 
-            border-color:#2563eb;
+            border-color:#2563EB;
 
         }
 
@@ -112,7 +124,7 @@
 
             padding:15px;
 
-            background:#2563eb;
+            background:#2563EB;
 
             color:white;
 
@@ -128,7 +140,7 @@
 
         button:hover{
 
-            background:#1d4ed8;
+            background:#1D4ED8;
 
         }
 
@@ -145,96 +157,123 @@
         a{
 
             text-decoration:none;
-            color:#2563eb;
-            font-weight:bold;
-        }
-        select{
 
-            width:100%;
-            padding:14px;
-            border:1px solid #ccc;
-            border-radius:10px;
-            font-size:16px;
-            outline:none;
+            color:#2563EB;
+
+            font-weight:bold;
+
         }
 
     </style>
 
 </head>
+
 <body>
-<div class="container">
-    <div class="logo">
-        🛡️
-    </div>
-    <h1>Create Account</h1>
-    <form method="POST">
-        <div class="input-group">
-            <label>Username</label>
-            <input
-            type="text"
-            name="username"
-            placeholder="Enter Username"
-            required>
-        </div>
-        <div class="input-group">
-            <label>Email</label>
-            <input
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            required>
-        </div>
-        <div class="input-group">
-            <label>Password</label>
-            <input
-            type="password"
-            name="password"
-            placeholder="Create Password"
-            required>
-        </div>
-        <div class="input-group">
-        <label>Role</label>
 
-        <select name="role" required>
+    <div class="container">
 
-            <option value="Employee">
-                Employee
-            </option>
+        <div class="logo">
 
-            <option value="Manager">
-                Manager
-            </option>
-
-            <option value="Admin">
-                Admin
-            </option>
-
-        </select>
+            🛡️
 
         </div>
 
-
-        <button type="submit">
+        <h1>
 
             Create Account
 
-        </button>
+        </h1>
 
-    </form>
+        <form method="POST">
 
-    <p>
+            <div class="input-group">
 
-        Already have an account?
+                <label>Username</label>
 
-        <a href="{{ url_for('login') }}">
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter Username"
+                    required>
 
-            Login
+            </div>
 
-        </a>
+            <div class="input-group">
 
-    </p>
+                <label>Email</label>
 
-</div>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create Password"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Role</label>
+
+                <select
+                    name="role"
+                    required>
+
+                    <option value="Employee">
+
+                        Employee
+
+                    </option>
+
+                    <option value="Manager">
+
+                        Manager
+
+                    </option>
+
+                    <option value="Admin">
+
+                        Admin
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+        <p>
+
+            Already have an account?
+
+            <a href="{{ url_for('login') }}">
+
+                Login
+
+            </a>
+
+        </p>
+
+    </div>
 
 </body>
+
 </html>

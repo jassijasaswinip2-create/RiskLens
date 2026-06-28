@@ -1,871 +1,852 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>RiskLens</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+    <title>RiskLens</title>
 
-<style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+                linear-gradient(
+                    -45deg,
+                    #0F172A,
+                    #111827,
+                    #1E293B,
+                    #0F172A);
+
+            background-size:400% 400%;
+
+            animation:gradient 15s ease infinite;
+
+            color:white;
+
+            overflow-x:hidden;
+            overflow-y:auto;
+
+        }
+
+        @keyframes gradient{
+
+            0%{
+                background-position:0% 50%;
+            }
+
+            50%{
+                background-position:100% 50%;
+            }
+
+            100%{
+                background-position:0% 50%;
+            }
+
+        }
+        nav{
+
+            position:fixed;
+
+            top:0;
+            left:0;
+
+            width:100%;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            padding:20px 80px;
+
+            background:rgba(15,23,42,.65);
+
+            backdrop-filter:blur(20px);
+
+            border-bottom:1px solid rgba(255,255,255,.08);
+
+            z-index:1000;
+
+            transition:.4s;
+
+        }
+
+        .logo{
+
+            font-size:32px;
+
+            font-weight:700;
+
+            color:#F59E0B;
+
+        }
+
+        nav ul{
+
+            display:flex;
+
+            gap:40px;
+
+            list-style:none;
+
+        }
+
+        nav ul a{
+
+            color:white;
+
+            text-decoration:none;
+
+            font-weight:500;
+
+            transition:.3s;
+            font-size:20px
+
+        }
+
+        nav ul a:hover{
+
+            color:#F59E0B;
+
+        }
+        .hero{
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:150px 100px 100px;
+
+
+        }
+        .container{
+             background:
+                linear-gradient(
+                    rgba(15,23,42,0.75),
+                    rgba(15,23,42,0.75)
+                ),
+                url("{{ url_for('static', filename='p.jpeg') }}");
+
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat, repeat;
+
+        }
+
+        .left{
+
+            width:50%;
+
+        }
+
+        .badge{
+
+            display:inline-block;
+
+            padding:10px 20px;
+
+            border-radius:30px;
+
+            background:#1E293B;
+
+            color:#38BDF8;
+
+            margin-bottom:30px;
+
+        }
+
+        .left h1{
+
+            font-size:75px;
+
+            line-height:1.2;
+
+            animation:slideUp 1.2s ease;
+
+        }
+
+        @keyframes slideUp{
+
+            0%{
+
+                opacity:0;
+
+                transform:translateY(80px);
+
+            }
+
+            100%{
+
+                opacity:1;
+
+                transform:translateY(0);
+
+            }
+
+        }
+
+        .left span{
+
+            color:#F59E0B;
+
+        }
+
+        .left p{
+
+            margin-top:30px;
+
+            font-size:18px;
+
+            color:#CBD5E1;
+
+            line-height:1.8;
+
+        }
+
+        .buttons{
+
+            margin-top:40px;
+
+            display:flex;
+
+            gap:20px;
+
+        }
+
+        .buttons a{
+
+            padding:18px 35px;
+
+            background:linear-gradient(
+                90deg,
+                #F59E0B,
+                #FB923C);
+
+            border-radius:18px;
+
+            color:white;
+
+            text-decoration:none;
+
+            font-weight:600;
+
+            transition:.4s;
+
+            box-shadow:0 0 20px rgba(245,158,11,.2);
+
+        }
+
+        .buttons a:hover{
+
+            transform:translateY(-8px);
+
+            box-shadow:0 0 35px rgba(245,158,11,.7);
+
+        }
+
+        .right img{
+
+            width:600px;
+
+            animation:float 5s ease-in-out infinite;
+
+        }
+
+        @keyframes float{
+
+            0%{
+
+                transform:translateY(0);
+
+            }
+
+            50%{
+
+                transform:translateY(-20px);
+
+            }
+
+            100%{
+
+                transform:translateY(0);
+
+            }
+
+        }
+
+
+        .features{
+
+            display:flex;
+
+            gap:30px;
+
+            padding:0 80px 80px;
+
+        }
+
+        .card{
+
+            flex:1;
+
+            background:rgba(31,41,55,.82);
+
+            backdrop-filter:blur(18px);
+
+            padding:35px;
+
+            border-radius:25px;
+
+            text-align:center;
+
+            opacity:0;
+
+            transform:translateY(80px);
+
+            animation:card 1s forwards;
+            width:395px;
+            height:300px;
+
+            transition:.4s;
+
+        }
+
+        .card:nth-child(2){
+            animation-delay:.2s;
+        }
+
+        .card:nth-child(3){
+            animation-delay:.4s;
+        }
+
+        .card:nth-child(4){
+            animation-delay:.6s;
+        }
+
+        @keyframes card{
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+
+            }
+
+        }
+
+        .card:hover{
+
+            transform:translateY(-10px);
+
+            box-shadow:0 0 40px rgba(245,158,11,.4);
+
+        }
+
+        .card .icon{
+
+            font-size:55px;
+
+            margin-bottom:20px;
+
+            animation:pulse 2s infinite;
+
+        }
+
+        @keyframes pulse{
+
+            0%{
+                transform:scale(1);
+            }
+
+            50%{
+                transform:scale(1.15);
+            }
+
+            100%{
+                transform:scale(1);
+            }
+
+        }
+
+        .card h3{
+
+            margin-bottom:15px;
+
+            color:#F8FAFC;
+
+        }
+
+        .card p{
+
+            color:#CBD5E1;
+
+        }
+
+        .stats{
+
+            display:flex;
+
+            gap:30px;
+
+            padding:40px 80px;
+
+        }
+
+
+        footer{
+
+            margin-top:60px;
+
+            padding:30px;
+
+            text-align:center;
+
+            background:#0F172A;
+
+            color:#94A3B8;
+
+        }
+
+        .hidden{
+
+            opacity:0;
+
+            transform:translateY(80px);
+
+            transition:1s;
+
+        }
+
+        .show{
+
+            opacity:1;
+
+            transform:translateY(0);
+
+        }
+
+
+        #loader{
+
+            position:fixed;
+
+            inset:0;
+
+            background:#0F172A;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            z-index:99999;
+
+            transition:opacity .6s ease;
+
+        }
+
+        .loader-content{
+
+            text-align:center;
+
+        }
+
+        .shield{
+
+            font-size:90px;
+
+            animation:rotate 2s linear infinite;
+
+        }
+
+        .loader-content h1{
+
+            margin-top:20px;
+
+            font-size:48px;
+
+            color:#F59E0B;
+
+            letter-spacing:2px;
+
+        }
+
+        .loader-content p{
+
+            margin-top:15px;
+
+            color:#CBD5E1;
+
+            font-size:18px;
+
+        }
+
+        .loading-bar{
+
+            width:320px;
+
+            height:10px;
+
+            background:#1E293B;
+
+            border-radius:20px;
+
+            overflow:hidden;
+
+            margin:35px auto;
+
+        }
+
+        .loading-progress{
+
+            height:100%;
+
+            width:0;
+
+            background:linear-gradient(
+                90deg,
+                #38BDF8,
+                #F59E0B);
+
+            animation:loading 2.2s linear forwards;
+
+        }
+
+        @keyframes loading{
+
+            0%{
+                width:0;
+            }
+
+            100%{
+                width:100%;
+            }
+
+        }
+
+        @keyframes rotate{
+
+            0%{
+                transform:rotate(0deg);
+            }
+
+            100%{
+                transform:rotate(360deg);
+            }
+
+        }
+        .icon{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-bottom:20px;
+    }
+
+    .icon img{
+        width:60px;
+        height:60px;
+        object-fit:contain;
+        transition:.3s;
+    }
+
+    .card:hover .icon img{
+        transform:scale(1.1);
+    }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#F59E0B;
+    font-size:50px;
+    font-weight:700;
 }
 
-body{
-
-background:
-linear-gradient(
--45deg,
-#0F172A,
-#111827,
-#1E293B,
-#0F172A);
-
-background-size:400% 400%;
-
-animation:gradient 15s ease infinite;
-
-color:white;
-
-overflow-x:hidden;
-overflow-y:auto;
-
+.logo img{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+    border-radius:20px;
 }
-
-@keyframes gradient{
-
-0%{
-background-position:0% 50%;
+.shield img{
+    width:120px;
+    height:120px;
+    animation:rotate 60s linear infinite;
+    border-radius:20px;
 }
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
-
-}
-
-/* NAVBAR */
-
-nav{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 80px;
-
-background:rgba(15,23,42,.65);
-
-backdrop-filter:blur(20px);
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-z-index:1000;
-
-transition:.4s;
-
-}
-.logo{
-
-font-size:32px;
-
-font-weight:700;
-
-color:#F59E0B;
-
-}
-
-nav ul{
-
-display:flex;
-
-gap:40px;
-
-list-style:none;
-
-}
-
-nav ul a{
-
-color:white;
-
-text-decoration:none;
-
-font-weight:500;
-
-transition:.3s;
-
-}
-
-nav ul a:hover{
-
-color:#F59E0B;
-
-}
-
-/* HERO */
-
-.hero{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:100px;
-
-}
-.hero{
-
-padding-top:150px;
-
-}
-
-.left{
-
-width:50%;
-
-}
-
-.badge{
-
-display:inline-block;
-
-padding:10px 20px;
-
-border-radius:30px;
-
-background:#1E293B;
-
-color:#38BDF8;
-
-margin-bottom:30px;
-
-}
-
-.left h1{
-
-font-size:75px;
-
-line-height:1.2;
-
-animation:slideUp 1.2s ease;
-
-}
-
-@keyframes slideUp{
-
-0%{
-
-opacity:0;
-
-transform:translateY(80px);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-.left span{
-
-color:#F59E0B;
-
-}
-
-.left p{
-
-margin-top:30px;
-
-font-size:18px;
-
-color:#CBD5E1;
-
-line-height:1.8;
-
-}
-
-.buttons{
-
-margin-top:40px;
-
-display:flex;
-
-gap:20px;
-
-}
-
-.buttons a{
-
-padding:18px 35px;
-
-background:
-linear-gradient(
-90deg,
-#F59E0B,
-#FB923C);
-
-border-radius:18px;
-
-color:white;
-
-text-decoration:none;
-
-font-weight:600;
-
-transition:.4s;
-
-box-shadow:
-0 0 20px rgba(245,158,11,.2);
-
-}
-
-.buttons a:hover{
-
-transform:
-translateY(-8px);
-
-box-shadow:
-0 0 35px rgba(245,158,11,.7);
-
-}
-
-.buttons a:hover{
-
-transform:
-translateY(-5px);
-
-box-shadow:
-0 0 25px #F59E0B;
-
-}
-
-.right img{
-
-width:600px;
-
-animation:float 5s ease-in-out infinite;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:translateY(0);
-
-}
-
-50%{
-
-transform:translateY(-20px);
-
-}
-
-100%{
-
-transform:translateY(0);
-
-}
-
-}
-
-/* FEATURES */
-
-.features{
-
-display:flex;
-
-gap:30px;
-
-padding:0 80px 80px;
-
-}
-
-.card{
-
-flex:1;
-
-background:rgba(31,41,55,.82);
-
-backdrop-filter:blur(18px);
-
-padding:35px;
-
-border-radius:25px;
-
-text-align:center;
-
-opacity:0;
-
-transform:translateY(80px);
-
-animation:card 1s forwards;
-
-transition:.4s;
-
-}
-
-.card:nth-child(2){
-
-animation-delay:.2s;
-
-}
-
-.card:nth-child(3){
-
-animation-delay:.4s;
-
-}
-
-.card:nth-child(4){
-
-animation-delay:.6s;
-
-}
-
-@keyframes card{
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-.card:hover{
-
-transform:
-translateY(-10px);
-
-box-shadow:
-0 0 40px rgba(245,158,11,.4);
-
-}
-
-.card .icon{
-
-font-size:55px;
-
-margin-bottom:20px;
-
-animation:pulse 2s infinite;
-
-}
-
-@keyframes pulse{
-
-0%{
-
-transform:scale(1);
-
-}
-
-50%{
-
-transform:scale(1.15);
-
-}
-
-100%{
-
-transform:scale(1);
-
-}
-
-}
-.card h3{
-
-margin-bottom:15px;
-
-color:#F8FAFC;
-
-}
-
-.card p{
-
-color:#CBD5E1;
-
-}
-.stats{
-
-display:flex;
-
-gap:30px;
-
-padding:40px 80px;
-
-}
-
-/* FOOTER */
-
-footer{
-
-margin-top:60px;
-
-padding:30px;
-
-text-align:center;
-
-background:#0F172A;
-
-color:#94A3B8;
-
-}
-.hidden{
-
-opacity:0;
-
-transform:translateY(80px);
-
-transition:1s;
-
-}
-
-.show{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-/* ================= LOADING SCREEN ================= */
-
-#loader{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:#0F172A;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:99999;
-
-transition:opacity .6s ease;
-
-}
-
-.loader-content{
-
-text-align:center;
-
-}
-
-.shield{
-
-font-size:90px;
-
-animation:rotate 2s linear infinite;
-
-}
-
-.loader-content h1{
-
-margin-top:20px;
-
-font-size:48px;
-
-color:#F59E0B;
-
-letter-spacing:2px;
-
-}
-
-.loader-content p{
-
-margin-top:15px;
-
-color:#CBD5E1;
-
-font-size:18px;
-
-}
-
-.loading-bar{
-
-width:320px;
-
-height:10px;
-
-background:#1E293B;
-
-border-radius:20px;
-
-overflow:hidden;
-
-margin:35px auto;
-
-}
-
-.loading-progress{
-
-height:100%;
-
-width:0;
-
-background:linear-gradient(
-90deg,
-#38BDF8,
-#F59E0B);
-
-animation:loading 2.2s linear forwards;
-
-}
-
-@keyframes loading{
-
-0%{
-
-width:0;
-
-}
-
-100%{
-
-width:100%;
-
-}
-
-}
-
-@keyframes rotate{
-
-0%{
-
-transform:rotate(0deg);
-
-}
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-</style>
+    </style>
 
 </head>
-
+```html
 <body>
+
     <div id="loader">
 
-    <div class="loader-content">
+        <div class="loader-content">
 
-        <div class="shield">
+            <div class="shield">
 
-            🛡️
+                <img src="/static/i11.png" alt="">
 
-        </div>
+            </div>
 
-        <h1>RiskLens AI</h1>
+            <h1>RiskLens</h1>
 
-        <p>Loading Intelligent Safety Analytics...</p>
+            <p>Loading Intelligent Safety Analytics...</p>
 
-        <div class="loading-bar">
+            <div class="loading-bar">
 
-            <div class="loading-progress"></div>
+                <div class="loading-progress"></div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+    <nav>
 
-<nav>
+        <div class="logo">
 
-<div class="logo">
+            <img src="static/i11.png" alt=""> <span>RiskLens</span>
 
-🛡️ RiskLens
+        </div>
 
-</div>
+        <ul>
 
-<ul>
+            <li>
+                <a href="#">Home</a>
+            </li>
 
-<li><a href="#">Home</a></li>
+            <li>
+                <a href="{{ url_for('search') }}">
+                    Search
+                </a>
+            </li>
 
-<li><a href="{{ url_for('search') }}">
-Search
-</a></li>
+            <li>
+                <a href="{{ url_for('profile') }}">
+                    Profile
+                </a>
+            </li>
 
-<li><a href="{{ url_for('profile') }}">
-Profile
-</a></li>
+            <li>
+                <a href="{{ url_for('admin') }}">
+                    Admin
+                </a>
+            </li>
 
-<li><a href="{{ url_for('admin') }}">
-Admin
-</a></li>
+            <li>
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+            </li>
 
-<li><a href="{{ url_for('logout') }}">
-Logout
-</a></li>
+        </ul>
 
-</ul>
+    </nav>
+    <div class="container">
 
-</nav>
+        <section class="hero">
 
-<section class="hero">
+            <div class="left">
 
-<div class="left">
+                <h1>
+                    Protecting People
+                    <span>Preventing Risks</span>
+                </h1>
+                <p id="typing"></p>
 
-<div class="badge">
+                <div class="buttons">
 
-AI Powered Safety Analytics
+                    <a href="{{ url_for('upload') }}">
 
-</div>
+                        Analyze Data
 
-<h1>
+                    </a>
 
-Employee Safety
+                    <a href="{{ url_for('results') }}">
 
-<span>
+                        Dashboard
 
-Reimagined
+                    </a>
 
-</span>
+                </div>
 
-</h1>
+            </div>
 
-<p id="typing"></p>
+            <div class="right">
 
-<div class="buttons">
+                <img
+                    src="{{ url_for('static', filename='worker.png') }}"
+                    alt="Worker">
 
-<a href="{{ url_for('upload') }}">
-    Analyze Data
-</a>
+            </div>
 
-<a href="{{ url_for('results') }}">
+        </section>
 
-Dashboard
+        <section class="features">
 
-</a>
+            <div class="card">
 
-</div>
+                <div class="icon">
 
-</div>
+                    <img src="{{ url_for('static', filename='i6.png') }}" alt="AI">
 
-<div class="right">
+                </div>
 
-<img src="{{ url_for('static',
-filename='worker.png') }}">
+                <h3>
 
-</div>
+                    CSV Dataset Upload
 
-</section>
-<section class="stats">
+                </h3>
 
-<div class="card">
+                <p>
 
-<h3>Total Analyses</h3>
+                    Upload employee safety datasets securely for instant processing and analysis.
 
-<h1 class="counter" data-target="1500">0</h1>
+                </p>
 
-</div>
+            </div>
 
-<div class="card">
+            <div class="card">
 
-<h3>Accuracy</h3>
+                <div class="icon">
 
-<h1 class="counter" data-target="98">0</h1>
+                    📊
 
-</div>
+                </div>
 
-<div class="card">
+                <h3>
 
-<h3>Companies</h3>
+                    Real Time Insights
 
-<h1 class="counter" data-target="40">0</h1>
+                </h3>
 
-</div>
+                <p>
 
-</section>
+                    Instant incident analytics.
 
-<section class="features">
+                </p>
 
-<div class="card">
+            </div>
 
-<div class="icon">
+            <div class="card">
 
-🤖
+                <div class="icon">
 
-</div>
+                    <img src="{{ url_for('static', filename='i7.jpg') }}" alt="AI">
 
-<h3>
+                </div>
 
-AI Models
+                <h3>
 
-</h3>
+                    Search
 
-<p>
+                </h3>
 
-Advanced machine learning algorithms.
+                <p>
 
-</p>
+                    Search incidents by date, location, severity, and other important filters.
 
-</div>
+                </p>
 
-<div class="card">
+            </div>
 
-<div class="icon">
+            <div class="card">
 
-📊
+                <div class="icon">
 
-</div>
+                    <img src="static/pdf.svg" alt="pdf">  
 
-<h3>
+                </div>
 
-Real Time Insights
+                <h3>
 
-</h3>
+                    PDF Export
 
-<p>
+                </h3>
 
-Instant incident analytics.
+                <p>
 
-</p>
+                    Download professional safety reports for documentation and compliance.
 
-</div>
+                </p>
 
-<div class="card">
+            </div>
 
-<div class="icon">
+        </section>
+    </div>
+    <footer>
 
-⚠️
+        © 2026 RiskLens | Employee Safety Analysis Platform
 
-</div>
+    </footer>
 
-<h3>
+    <script>
 
-Smart Predictions
+        const observer = new IntersectionObserver(entries => {
 
-</h3>
+            entries.forEach(entry => {
 
-<p>
+                if (entry.isIntersecting) {
 
-Predict future risks and accidents.
+                    entry.target.classList.add("show");
 
-</p>
+                }
 
-</div>
+            });
 
-<div class="card">
+        });
 
-<div class="icon">
+        document.querySelectorAll(".card").forEach(card => {
 
-🔐
+            card.classList.add("hidden");
 
-</div>
+            observer.observe(card);
 
-<h3>
+        });
 
-Data Security
+        window.addEventListener("load", function () {
 
-</h3>
+            const loader = document.getElementById("loader");
 
-<p>
+            setTimeout(function () {
 
-Enterprise-grade protection.
+                loader.style.opacity = "0";
 
-</p>
+                loader.style.pointerEvents = "none";
 
-</div>
+                setTimeout(function () {
 
-</section>
+                    loader.style.display = "none";
 
-<footer>
+                }, 600);
 
-© 2026 RiskLens | AI Powered Employee Safety Platform
+            }, 2200);
 
-</footer>
-<script>
+        });
 
-const observer = new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-});
-
-document.querySelectorAll(".card").forEach(card=>{
-
-    card.classList.add("hidden");
-
-    observer.observe(card);
-
-});
-
-window.addEventListener("load", function(){
-
-    const loader = document.getElementById("loader");
-
-    setTimeout(function(){
-
-        loader.style.opacity = "0";
-        loader.style.pointerEvents = "none";
-
-        setTimeout(function(){
-
-            loader.style.display = "none";
-
-        },600);
-
-    },2200);
-
-});
-
-</script>
+    </script>
 
 </body>
+
 </html>

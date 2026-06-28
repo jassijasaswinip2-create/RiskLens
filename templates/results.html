@@ -1,635 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
-<title>RiskLens Dashboard</title>
+    <meta charset="UTF-8">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+    <title>RiskLens Dashboard</title>
 
-<style>
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+            linear-gradient(
+                rgba(15,23,42,0.65),
+                rgba(15,23,42,0.75)
+            ),
+            url("{{ url_for('static', filename='i9.jpg') }}");
+
+        background-size:cover;
+        background-position:center;
+        background-attachment:fixed;
+        background-repeat:no-repeat;
+
+        color:white;
+
+        }
+
+        nav{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            padding:25px 50px;
+
+            background:
+                rgba(15,23,42,.8);
+
+            backdrop-filter:blur(20px);
+
+            border-bottom:
+                1px solid rgba(245,158,11,.2);
+
+        }
+
+        nav h2{
+
+            font-size:32px;
+
+            color:#F59E0B;
+
+        }
+
+        .container{
+
+            width:92%;
+
+            margin:auto;
+
+            padding:50px 0;
+
+        }
+
+        .cards{
+
+            display:flex;
+
+            gap:30px;
+
+            flex-wrap:wrap;
+
+            margin-bottom:50px;
+
+        }
+
+        .card{
+
+            flex:1;
+
+            min-width:250px;
+
+            background:
+                rgba(31,41,55,.85);
+
+            padding:35px;
+
+            border-radius:25px;
+
+            text-align:center;
+
+            box-shadow:
+                0 0 20px rgba(245,158,11,.15);
+
+            transition:.4s;
+
+        }
+
+        .card:hover{
+
+            transform:translateY(-10px);
+
+            box-shadow:
+                0 0 40px rgba(245,158,11,.4);
+
+        }
+
+        .card h3{
+
+            color:#CBD5E1;
+
+            margin-bottom:20px;
+
+        }
+
+        .card h1{
+
+            font-size:60px;
+
+            color:#F59E0B;
+
+        }
+
+        .accuracy{
+
+            display:flex;
+
+            gap:30px;
+
+            flex-wrap:wrap;
+
+            margin-top:40px;
+
+        }
+
+        .accuracy-card{
+
+            flex:1;
+
+            min-width:250px;
+
+            background:
+                rgba(31,41,55,.85);
+
+            padding:35px;
+
+            border-radius:25px;
+
+            text-align:center;
+
+            box-shadow:
+                0 0 20px rgba(56,189,248,.15);
+
+            transition:.4s;
+
+        }
+
+        .accuracy-card:hover{
+
+            transform:translateY(-10px);
+
+        }
+
+        .accuracy-card h2{
+
+            color:#38BDF8;
+
+            margin-bottom:20px;
+
+        }
+
+        .accuracy-card p{
+
+            font-size:50px;
+
+            font-weight:700;
+
+            color:#10B981;
+
+        }
+
+        .graph-box{
+
+            background:
+                rgba(31,41,55,.85);
+
+            padding:40px;
+
+            border-radius:25px;
+
+            margin-top:40px;
+
+            box-shadow:
+                0 0 25px rgba(56,189,248,.15);
+
+        }
+
+        .graph-box h2{
+
+            margin-bottom:25px;
+
+            color:#F8FAFC;
+
+        }
+
+        .recommendation{
+
+            background:
+                rgba(31,41,55,.85);
+
+            padding:40px;
+
+            margin-top:50px;
+
+            border-radius:25px;
+
+            box-shadow:
+                0 0 20px rgba(16,185,129,.2);
+
+        }
+
+        .recommendation h2{
+
+            margin-bottom:25px;
+
+            color:#10B981;
+
+        }
+
+        .recommendation li{
+
+            margin-bottom:15px;
+
+            font-size:18px;
+
+            color:#CBD5E1;
+
+        }
+
+        .btn{
+
+            padding:15px 30px;
+
+            border:none;
+
+            border-radius:15px;
+
+            font-size:17px;
+
+            cursor:pointer;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #F59E0B,
+                    #D97706);
+
+            color:white;
+
+            transition:.4s;
+
+            margin-right:15px;
+
+            margin-top:30px;
+
+        }
+
+        .btn:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:
+                0 0 20px #F59E0B;
+
+        }
+
+        footer{
+
+            margin-top:80px;
+
+            padding:30px;
+
+            background:#0F172A;
+
+            text-align:center;
+
+            color:#94A3B8;
+
+        }
+         .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            color:#F59E0B;
+            font-size:50px;
+            font-weight:700;
+        }
+
+.logo img{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+    border-radius:20px;
 }
 
-body{
-
-background:
-linear-gradient(
-135deg,
-#111827,
-#0F172A);
-
-color:white;
-
-}
-
-/* NAVBAR */
-
-nav{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:25px 50px;
-
-background:
-rgba(15,23,42,.8);
-
-backdrop-filter:blur(20px);
-
-border-bottom:
-1px solid rgba(245,158,11,.2);
-
-}
-
-nav h2{
-
-font-size:32px;
-
-color:#F59E0B;
-
-}
-
-/* MAIN */
-
-.container{
-
-width:92%;
-
-margin:auto;
-
-padding:50px 0;
-
-}
-
-/* KPI CARDS */
-
-.cards{
-
-display:flex;
-
-gap:30px;
-
-flex-wrap:wrap;
-
-margin-bottom:50px;
-
-}
-
-.card{
-
-flex:1;
-
-min-width:250px;
-
-background:
-rgba(31,41,55,.85);
-
-padding:35px;
-
-border-radius:25px;
-
-text-align:center;
-
-box-shadow:
-0 0 20px rgba(245,158,11,.15);
-
-transition:.4s;
-
-}
-
-.card:hover{
-
-transform:
-translateY(-10px);
-
-box-shadow:
-0 0 40px rgba(245,158,11,.4);
-
-}
-
-.card h3{
-
-color:#CBD5E1;
-
-margin-bottom:20px;
-
-}
-
-.card h1{
-
-font-size:60px;
-
-color:#F59E0B;
-
-}
-
-/* MODEL CARDS */
-
-.accuracy{
-
-display:flex;
-
-gap:30px;
-
-flex-wrap:wrap;
-
-margin-top:40px;
-
-}
-
-.accuracy-card{
-
-flex:1;
-
-min-width:250px;
-
-background:
-rgba(31,41,55,.85);
-
-padding:35px;
-
-border-radius:25px;
-
-text-align:center;
-
-box-shadow:
-0 0 20px rgba(56,189,248,.15);
-
-transition:.4s;
-
-}
-
-.accuracy-card:hover{
-
-transform:
-translateY(-10px);
-
-}
-
-.accuracy-card h2{
-
-color:#38BDF8;
-
-margin-bottom:20px;
-
-}
-
-.accuracy-card p{
-
-font-size:50px;
-
-font-weight:700;
-
-color:#10B981;
-
-}
-
-/* GRAPH BOX */
-
-.graph-box{
-
-background:
-rgba(31,41,55,.85);
-
-padding:40px;
-
-border-radius:25px;
-
-margin-top:40px;
-
-box-shadow:
-0 0 25px rgba(56,189,248,.15);
-
-}
-
-.graph-box h2{
-
-margin-bottom:25px;
-
-color:#F8FAFC;
-
-}
-
-/* RECOMMENDATIONS */
-
-.recommendation{
-
-background:
-rgba(31,41,55,.85);
-
-padding:40px;
-
-margin-top:50px;
-
-border-radius:25px;
-
-box-shadow:
-0 0 20px rgba(16,185,129,.2);
-
-}
-
-.recommendation h2{
-
-margin-bottom:25px;
-
-color:#10B981;
-
-}
-
-.recommendation li{
-
-margin-bottom:15px;
-
-font-size:18px;
-
-color:#CBD5E1;
-
-}
-
-/* BUTTONS */
-
-.btn{
-
-padding:15px 30px;
-
-border:none;
-
-border-radius:15px;
-
-font-size:17px;
-
-cursor:pointer;
-
-background:
-linear-gradient(
-90deg,
-#F59E0B,
-#D97706);
-
-color:white;
-
-transition:.4s;
-
-margin-right:15px;
-
-margin-top:30px;
-
-}
-
-.btn:hover{
-
-transform:
-translateY(-5px);
-
-box-shadow:
-0 0 20px #F59E0B;
-
-}
-
-/* FOOTER */
-
-footer{
-
-margin-top:80px;
-
-padding:30px;
-
-background:#0F172A;
-
-text-align:center;
-
-color:#94A3B8;
-
-}
-
-</style>
+    </style>
 
 </head>
 <body>
 
-<nav>
+<nav class="logo">
 
-<h2>
-
-🛡️ RiskLens Dashboard
-
-</h2>
+    <h2>
+        <img src="static/i11.png" alt=""> <span>RiskLens Dashboard</span>
+    </h2>
 
 </nav>
 
 <div class="container">
 
-<!-- KPI CARDS -->
+    <div class="cards">
 
-<div class="cards">
+        <div class="card">
+            <h3>Total Incidents</h3>
+            <h1>{{ total }}</h1>
+        </div>
 
-<div class="card">
+        <div class="card">
+            <h3>High Risk Cases</h3>
+            <h1>{{ high }}</h1>
+        </div>
 
-<h3>
+        <div class="card">
+            <h3>Locations Covered</h3>
+            <h1>{{ locations }}</h1>
+        </div>
 
-Total Incidents
+    </div>
 
-</h3>
+    <h1 style="margin-bottom:30px;">
+        🤖 Model Performance
+    </h1>
 
-<h1>
+    <div class="accuracy">
 
-{{total}}
+        <div class="accuracy-card">
+            <h2>Logistic Regression</h2>
+            <p>{{ log_accuracy }}%</p>
+        </div>
 
-</h1>
+        <div class="accuracy-card">
+            <h2>Decision Tree</h2>
+            <p>{{ tree_accuracy }}%</p>
+        </div>
+
+        <div class="accuracy-card">
+            <h2>Random Forest</h2>
+            <p>{{ rf_accuracy }}%</p>
+        </div>
+
+    </div>
+
+    <div class="graph-box">
+
+        <h2>
+            📊 Incidents by Location & Severity
+        </h2>
+
+        <div class="chart">
+            {{ chart1|safe }}
+        </div>
+
+    </div>
+
+    <div class="graph-box">
+
+        <h2>
+            ⏰ Incident Distribution by Hour
+        </h2>
+
+        <div class="chart">
+            {{ chart2|safe }}
+        </div>
+
+    </div>
+
+    <div class="graph-box">
+
+        <h2>
+            📈 Incident Trend
+        </h2>
+
+        <div class="chart">
+            {{ chart3|safe }}
+        </div>
+
+    </div>
+
+    <div class="graph-box">
+
+        <h2>
+            📍 Location Analysis
+        </h2>
+
+        <div class="chart">
+            {{ chart4|safe }}
+        </div>
+
+    </div>
+
+    <div class="graph-box">
+
+        <h2>
+            ⚠️ Risk Distribution
+        </h2>
+
+        <div class="chart">
+            {{ chart5|safe }}
+        </div>
+
+    </div>
+
+
+
+    <h1 style="margin-top:50px;">
+        📥 Download Center
+    </h1>
+
+    <a href="{{ url_for('download_pdf') }}">
+        <button class="btn">
+            📄 PDF Report
+        </button>
+    </a>
+
+    <a href="{{ url_for('download_report') }}">
+        <button class="btn">
+            📊 CSV Report
+        </button>
+    </a>
+
+    <a href="{{ url_for('predict_page') }}">
+        <button class="btn">
+            🤖 Risk Prediction
+        </button>
+    </a>
+
+    <a href="{{ url_for('search') }}">
+        <button class="btn">
+            🔍 Search Incidents
+        </button>
+    </a>
+
+    <a href="{{ url_for('index') }}">
+        <button class="btn">
+            🏠 Home
+        </button>
+    </a>
 
 </div>
 
-<div class="card">
-
-<h3>
-
-High Risk Cases
-
-</h3>
-
-<h1>
-
-{{high}}
-
-</h1>
-
-</div>
-
-<div class="card">
-
-<h3>
-
-Locations Covered
-
-</h3>
-
-<h1>
-
-{{locations}}
-
-</h1>
-
-</div>
-
-</div>
-
-<!-- MODEL PERFORMANCE -->
-
-<h1>
-
-Model Performance
-
-</h1>
-
-<div class="accuracy">
-
-<div class="accuracy-card">
-
-<h2>
-
-Logistic Regression
-
-</h2>
-
-<p>
-
-{{log_accuracy}}%
-
-</p>
-
-</div>
-
-<div class="accuracy-card">
-
-<h2>
-
-Decision Tree
-
-</h2>
-
-<p>
-
-{{tree_accuracy}}%
-
-</p>
-
-</div>
-
-<div class="accuracy-card">
-
-<h2>
-
-Random Forest
-
-</h2>
-
-<p>
-
-{{rf_accuracy}}%
-
-</p>
-
-</div>
-
-</div>
-
-<!-- CHART 1 -->
-
-<div class="graph-box">
-
-<h2>
-
-📊 Incidents by Location and Severity
-
-</h2>
-
-<div class="chart">
-
-{{ chart1|safe }}
-
-</div>
-
-</div>
-
-<!-- CHART 2 -->
-
-<div class="graph-box">
-
-<h2>
-
-⏰ Incident Distribution by Hour
-
-</h2>
-
-<div class="chart">
-
-{{ chart2|safe }}
-
-</div>
-
-</div>
-
-<!-- CHART 3 -->
-
-<div class="graph-box">
-
-<h2>
-
-📈 Incident Trend
-
-</h2>
-
-<div class="chart">
-
-{{ chart3|safe }}
-
-</div>
-
-</div>
-
-<!-- CHART 4 -->
-
-<div class="graph-box">
-
-<h2>
-
-📍 Location Analysis
-
-</h2>
-
-<div class="chart">
-
-{{ chart4|safe }}
-
-</div>
-
-</div>
-
-<!-- CHART 5 -->
-
-<div class="graph-box">
-
-<h2>
-
-⚠️ Risk Distribution
-
-</h2>
-
-<div class="chart">
-
-{{ chart5|safe }}
-
-</div>
-
-</div>
-
-<!-- RECOMMENDATIONS -->
-
-<div class="recommendation">
-
-<h2>
-
-✅ Safety Recommendations
-
-{% if recommendations %}
-
-{% for rec in recommendations %}
-
-<li>{{ rec }}</li>
-
-{% endfor %}
-
-{% else %}
-
-<li>Conduct regular safety audits.</li>
-<li>Increase PPE compliance.</li>
-<li>Provide employee safety training.</li>
-<li>Monitor high-risk areas.</li>
-
-{% endif %}
-
-</ul>
-
-</div>
-
-<!-- DOWNLOAD CENTER -->
-
-<h1 style="margin-top:50px;">
-
-Download Center
-
-</h1>
-
-<a href="/download_pdf">
-
-<button class="btn">
-
-📄 PDF Report
-
-</button>
-
-</a>
-
-<a href="/download_report">
-
-<button class="btn">
-
-📑 Complete Report
-
-</button>
-
-</a>
-
-<a href="/predict">
-
-<button class="btn">
-
-🤖 Risk Prediction
-
-</button>
-
-</a>
-
-<a href="/search">
-
-<button class="btn">
-
-🔍 Search Incidents
-
-</button>
-
-</a>
-
-<a href="/">
-
-<button class="btn">
-
-🏠 Home
-
-</button>
-
-</a>
-
-</div>
 <footer>
 
-© 2026 RiskLens
-
-AI Powered Employee Safety Analytics Platform
+    © 2026 RiskLens |
+    Employee Safety Analytics Platform
 
 </footer>
 
 </body>
 
 </html>
-

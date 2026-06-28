@@ -3,543 +3,520 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>Upload Dataset | RiskLens</title>
+    <title>Upload Dataset | RiskLens</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-<style>
+    <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-margin:0;
-padding:0;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+            overflow:hidden;
+        }
 
-overflow:hidden;
+        body{
 
+            height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+             background:
+                linear-gradient(
+                    rgba(15,23,42,0.65),
+                    rgba(15,23,42,0.75)
+                ),
+                url("{{ url_for('static', filename='i10.jpg') }}");
+
+            background-size:100% 100%;
+
+
+            overflow:hidden;
+
+        }
+
+        @keyframes gradientBG{
+
+            0%{
+                background-position:0% 50%;
+            }
+
+            50%{
+                background-position:100% 50%;
+            }
+
+            100%{
+                background-position:0% 50%;
+            }
+
+        }
+
+        .container{
+
+            width:550px;
+
+            padding:45px;
+
+            background:rgba(255,255,255,.08);
+
+            backdrop-filter:blur(18px);
+
+            border:1px solid rgba(255,255,255,.15);
+
+            border-radius:30px;
+
+            box-shadow:
+                0 0 35px rgba(245,158,11,.25);
+
+            animation:fade .8s;
+
+        }
+
+        @keyframes fade{
+
+            from{
+
+                opacity:0;
+
+                transform:translateY(60px);
+
+            }
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+
+            }
+
+        }
+
+        .logo{
+
+            font-size:60px;
+
+            text-align:center;
+
+            margin-bottom:10px;
+            
+
+        }
+
+
+.logo img{
+    width:105px;
+    height:105px;
+    object-fit:contain;
+    border-radius:20px;
 }
 
-body{
+        h1{
 
-height:100vh;
+            text-align:center;
 
-display:flex;
-justify-content:center;
-align-items:center;
+            color:#F59E0B;
 
-background:
-linear-gradient(-45deg,#0F172A,#111827,#1E293B,#0F172A);
+            margin-bottom:10px;
 
-background-size:400% 400%;
+        }
 
-animation:gradientBG 12s ease infinite;
+        .subtitle{
 
-overflow:hidden;
+            text-align:center;
 
-}
+            color:#CBD5E1;
 
-@keyframes gradientBG{
+            margin-bottom:35px;
 
-0%{background-position:0% 50%;}
+            line-height:26px;
 
-50%{background-position:100% 50%;}
+        }
 
-100%{background-position:0% 50%;}
+        .upload-box{
 
-}
+            border:3px dashed #38BDF8;
 
-.container{
+            border-radius:20px;
 
-width:550px;
+            padding:40px;
 
-padding:45px;
+            text-align:center;
 
-background:rgba(255,255,255,.08);
+            background:rgba(255,255,255,.05);
 
-backdrop-filter:blur(18px);
+            transition:.4s;
 
-border:1px solid rgba(255,255,255,.15);
+            cursor:pointer;
 
-border-radius:30px;
+        }
 
-box-shadow:
-0 0 35px rgba(245,158,11,.25);
+        .upload-box:hover{
 
-animation:fade .8s;
+            background:rgba(56,189,248,.08);
 
-}
+            box-shadow:
+                0 0 25px rgba(56,189,248,.3);
 
-@keyframes fade{
+        }
 
-from{
+        .upload-box img{
 
-opacity:0;
-transform:translateY(60px);
+            width:80px;
 
-}
+            margin-bottom:15px;
 
-to{
+        }
 
-opacity:1;
-transform:translateY(0);
+        .upload-box h3{
 
-}
+            color:white;
 
-}
+            margin-bottom:10px;
 
-.logo{
+        }
 
-font-size:60px;
+        .upload-box p{
 
-text-align:center;
+            color:#CBD5E1;
 
-margin-bottom:10px;
+            font-size:14px;
 
-}
+        }
 
-h1{
+        input[type="file"]{
 
-text-align:center;
+            margin-top:20px;
 
-color:#F59E0B;
+            color:white;
 
-margin-bottom:10px;
+            font-size:16px;
 
-}
+        }
 
-.subtitle{
+        button{
 
-text-align:center;
+            width:100%;
 
-color:#CBD5E1;
+            margin-top:35px;
 
-margin-bottom:35px;
+            padding:16px;
 
-line-height:26px;
+            border:none;
 
-}
+            border-radius:15px;
 
-.upload-box{
+            background:
+                linear-gradient(
+                    90deg,
+                    #F59E0B,
+                    #FB923C);
 
-border:3px dashed #38BDF8;
+            color:white;
 
-border-radius:20px;
+            font-size:19px;
 
-padding:40px;
+            font-weight:600;
 
-text-align:center;
+            cursor:pointer;
 
-background:rgba(255,255,255,.05);
+            transition:.35s;
 
-transition:.4s;
+        }
 
-cursor:pointer;
+        button:hover{
 
-}
+            transform:translateY(-5px);
 
-.upload-box:hover{
+            box-shadow:
+                0 0 30px rgba(245,158,11,.55);
 
-background:rgba(56,189,248,.08);
+        }
+        .features{
 
-box-shadow:
-0 0 25px rgba(56,189,248,.3);
+            display:flex;
 
-}
+            justify-content:space-between;
 
-.upload-box img{
+            margin-top:30px;
 
-width:80px;
+        }
 
-margin-bottom:15px;
+        .feature{
 
-}
+            text-align:center;
 
-.upload-box h3{
+            color:#CBD5E1;
 
-color:white;
+            font-size:14px;
 
-margin-bottom:10px;
+        }
 
-}
+        .feature span{
 
-.upload-box p{
+            display:block;
 
-color:#CBD5E1;
+            font-size:28px;
 
-font-size:14px;
+            margin-bottom:8px;
 
-}
+        }
 
-input[type=file]{
+        .back{
 
-margin-top:20px;
+            display:block;
 
-color:white;
+            text-align:center;
 
-font-size:16px;
+            margin-top:30px;
 
-}
+            text-decoration:none;
 
-button{
+            color:#38BDF8;
 
-width:100%;
+            font-weight:600;
 
-margin-top:35px;
+        }
 
-padding:16px;
+        .back:hover{
 
-border:none;
+            text-decoration:underline;
 
-border-radius:15px;
+        }
 
-background:
-linear-gradient(90deg,#F59E0B,#FB923C);
+        #loadingScreen{
 
-color:white;
+            position:fixed;
 
-font-size:19px;
+            inset:0;
 
-font-weight:600;
+            display:none;
 
-cursor:pointer;
+            justify-content:center;
 
-transition:.35s;
+            align-items:center;
 
-}
+            background:#0F172A;
 
-button:hover{
+            z-index:99999;
 
-transform:translateY(-5px);
+            overflow:hidden;
 
-box-shadow:
-0 0 30px rgba(245,158,11,.55);
+        }
 
-}
+        .spinner{
 
-.features{
+            width:90px;
 
-display:flex;
+            height:90px;
 
-justify-content:space-between;
+            border:8px solid rgba(255,255,255,.2);
 
-margin-top:30px;
+            border-top:8px solid #F59E0B;
 
-}
+            border-radius:50%;
 
-.feature{
+            animation:spin 1s linear infinite;
 
-text-align:center;
+            margin-bottom:30px;
 
-color:#CBD5E1;
+        }
 
-font-size:14px;
+        .loader{
 
-}
+            display:flex;
 
-.feature span{
+            flex-direction:column;
 
-display:block;
+            justify-content:center;
 
-font-size:28px;
+            align-items:center;
 
-margin-bottom:8px;
+            text-align:center;
 
-}
+            width:100%;
 
-.back{
+            height:100%;
+            background:
+        linear-gradient(
+            rgba(15,23,42,0.65),
+            rgba(15,23,42,0.75)
+        ),
+        url("{{ url_for('static', filename='i2.jpg') }}");
 
-display:block;
+        background-size:cover;
+        background-position:center;
+        background-attachment:fixed;
+        background-repeat:no-repeat;
 
-text-align:center;
+        color:white;
 
-margin-top:30px;
+        }
 
-text-decoration:none;
+        .loader h2{
 
-color:#38BDF8;
+            color:#F59E0B;
 
-font-weight:600;
+            margin-bottom:15px;
 
-}
+        }
 
-.back:hover{
+        .loader p{
 
-text-decoration:underline;
+            color:white;
 
-}
-/* ---------------- Loading Screen ---------------- */
+            font-size:20px;
 
-#loadingScreen{
+        }
 
-position:fixed;
+        @keyframes spin{
 
-top:0;
-left:0;
+            100%{
 
-width:100vw;
-height:100vh;
+                transform:rotate(360deg);
 
-display:none;
+            }
 
-justify-content:center;
-align-items:center;
+        }
 
-background:#0F172A;
 
-z-index:99999;
-
-overflow:hidden;
-position:fixed;
-
-inset:0;
-
-display:none;
-
-place-items:center;
-
-background:#0F172A;
-
-z-index:99999;
-
-}
-
-.spinner{
-
-width:90px;
-height:90px;
-
-border:8px solid rgba(255,255,255,.2);
-
-border-top:8px solid #F59E0B;
-
-border-radius:50%;
-
-animation:spin 1s linear infinite;
-
-margin-bottom:30px;
-
-}
-
-.loader{
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-text-align:center;
-
-width:100%;
-
-height:100%;
-
-}
-
-.loader p{
-
-color:white;
-
-font-size:20px;
-
-}
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-</style>
+    </style>
 
 </head>
-
 <body>
-<div id="loadingScreen">
 
-    <div class="loader">
+    <div id="loadingScreen">
 
-        <div class="spinner"></div>
+        <div class="loader">
 
-        <h2>RiskLens AI</h2>
+            <div class="spinner"></div>
 
-        <p id="loadingText">
+            <h2>
 
-            Uploading Dataset...
+                RiskLens
 
-        </p>
+            </h2>
+
+            <p id="loadingText">
+
+                Uploading Dataset...
+
+            </p>
+
+        </div>
 
     </div>
 
-</div>
+    <div class="container">
 
-<div class="container">
+        <div class="logo">
 
-<div class="logo">
+            <img src="/static/i11.png" alt="">
 
-🛡️
+        </div>
 
-</div>
+        <h1>
 
-<h1>
+            Upload Safety Dataset
 
-Upload Safety Dataset
+        </h1>
 
-</h1>
+        <p class="subtitle">
 
-<p class="subtitle">
+            Upload your employee safety CSV file.<br>
 
-Upload your employee safety CSV file.<br>
+            RiskLens will automatically analyze incidents,<br>
 
-RiskLens AI will automatically analyze incidents,<br>
+            generate charts, predict risks, and create reports.
 
-generate charts, predict risks, and create reports.
+        </p>
 
-</p>
+        <form
+            id="uploadForm"
+            action="{{ url_for('upload') }}"
+            method="POST"
+            enctype="multipart/form-data">
 
-<form id="uploadForm"
-action="{{ url_for('upload') }}"
-method="POST"
-enctype="multipart/form-data">
+            <div class="upload-box">
 
-<div class="upload-box">
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
+                    alt="Upload">
 
-<img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png">
+                <h3>
 
-<h3>
+                    Upload CSV File
 
-Drag & Drop CSV File
+                </h3>
+                <input
+                    type="file"
+                    name="file"
+                    accept=".csv"
+                    required>
 
-</h3>
+            </div>
 
-<p>
+            <button type="submit">
 
-or click below to browse
+                Analyze Dataset
 
-</p>
+            </button>
 
-<input
-type="file"
-name="file"
-accept=".csv"
-required>
+        </form>
 
-</div>
+    <script>
 
-<button type="submit">
+        const form = document.getElementById("uploadForm");
 
-🚀 Analyze Dataset
+        form.addEventListener("submit", function () {
 
-</button>
+            document.getElementById("loadingScreen").style.display = "flex";
 
-</form>
+            const messages = [
 
-<div class="features">
+                "Uploading Dataset...",
+                "Reading CSV File...",
+                "Training Machine Learning Models...",
+                "Creating Dashboard...",
+                "Generating PDF Report...",
+                "Almost Done..."
 
-<div class="feature">
+            ];
 
-<span>📊</span>
+            let i = 0;
 
-Charts
+            const loadingText = document.getElementById("loadingText");
 
-</div>
+            const timer = setInterval(() => {
 
-<div class="feature">
+                i++;
 
-<span>🤖</span>
+                if (i < messages.length) {
 
-AI Prediction
+                    loadingText.innerHTML = messages[i];
 
-</div>
+                } else {
 
-<div class="feature">
+                    clearInterval(timer);
 
-<span>📄</span>
+                }
 
-PDF Report
+            }, 1000);
 
-</div>
+        });
 
-<div class="feature">
-
-<span>⚡</span>
-
-Analytics
-
-</div>
-
-</div>
-
-<a
-class="back"
-href="{{ url_for('index') }}">
-
-⬅ Back to Dashboard
-
-</a>
-
-</div>
-<script>
-
-const form=document.getElementById("uploadForm");
-
-form.addEventListener("submit",function(){
-
-document.getElementById("loadingScreen").style.display="flex";
-
-const messages=[
-
-"Uploading Dataset...",
-
-"Reading CSV File...",
-
-"Training Machine Learning Models...",
-
-"Generating AI Predictions...",
-
-"Creating Dashboard...",
-
-"Generating PDF Report...",
-
-"Almost Done..."
-
-];
-
-let i=0;
-
-const loadingText=document.getElementById("loadingText");
-
-const timer=setInterval(()=>{
-
-i++;
-
-if(i<messages.length){
-
-loadingText.innerHTML=messages[i];
-
-}else{
-
-clearInterval(timer);
-
-}
-
-},1000);
-
-});
-
-</script>
+    </script>
 
 </body>
 

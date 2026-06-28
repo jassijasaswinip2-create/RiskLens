@@ -106,8 +106,6 @@ class Incident(db.Model):
 
 UPLOAD_FOLDER = 'static/plots'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-# ------------------ DATA PREPROCESSING ------------------
 def preprocess_data(df):
     df['Hour'] = pd.to_datetime(df['Time'], errors='coerce').dt.hour
     df['DayOfWeek'] = pd.to_datetime(df['Date'], errors='coerce').dt.dayofweek
@@ -122,7 +120,6 @@ def preprocess_data(df):
 
 def generate_visualizations(df):
 
-    # -------- Chart 1: Location vs Severity --------
     location_data = (
         df.groupby(['Location', 'Severity'])
         .size()
@@ -137,23 +134,17 @@ def generate_visualizations(df):
         title='Incidents by Location and Severity',
         barmode='group'
     )
-
-    # -------- Chart 2: Incidents by Hour --------
     fig2 = px.histogram(
         df,
         x='Hour',
         nbins=24,
         title='Incident Distribution by Hour'
     )
-
-    # -------- Chart 3: Severity Distribution --------
     fig3 = px.pie(
         df,
         names='Severity',
         title='Severity Distribution'
     )
-
-    # -------- Chart 4: Incidents by Day --------
     day_data = (
         df.groupby('DayOfWeek')
         .size()
@@ -166,8 +157,6 @@ def generate_visualizations(df):
         y='Count',
         title='Incidents by Day'
     )
-
-    # -------- Chart 5: Risk Pattern --------
     fig5 = px.scatter(
         df,
         x='Hour',
@@ -497,16 +486,16 @@ def results():
         total=session.get('total'),
         high=session.get('high'),
         locations=session.get('locations'),
-        recommendations=session.get(
-            'recommendations',
-            [
-                "Conduct regular safety audits",
-                "Increase PPE compliance",
-                "Provide employee training",
-                "Monitor high-risk locations",
-                "Improve incident reporting"
-            ]
-        )
+        # recommendations=session.get(
+        #     'recommendations',
+        #     [
+        #         "Conduct regular safety audits",
+        #         "Increase PPE compliance",
+        #         "Provide employee training",
+        #         "Monitor high-risk locations",
+        #         "Improve incident reporting"
+        #     ]
+        # )
     )
 @app.route('/predict')
 @login_required

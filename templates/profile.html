@@ -1,396 +1,382 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
 
-<title>Profile</title>
+    <title>Profile</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-<style>
+    <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
 
-body{
+        body{
 
-background:
-linear-gradient(
-135deg,
-#111827,
-#0F172A);
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #0F172A);
 
-color:white;
+            color:white;
 
-min-height:100vh;
+            min-height:100vh;
 
-}
+        }
 
-/* NAVBAR */
+        nav{
 
-nav{
+            display:flex;
 
-display:flex;
+            justify-content:space-between;
 
-justify-content:space-between;
+            align-items:center;
 
-align-items:center;
+            padding:25px 50px;
 
-padding:25px 50px;
+            background:
+                rgba(15,23,42,.8);
 
-background:
-rgba(15,23,42,.8);
+            backdrop-filter:blur(20px);
 
-backdrop-filter:blur(20px);
+            border-bottom:
+                1px solid rgba(245,158,11,.2);
 
-border-bottom:
-1px solid rgba(245,158,11,.2);
+        }
 
-}
+        nav h2{
 
-nav h2{
+            color:#F59E0B;
 
-color:#F59E0B;
+            font-size:32px;
 
-font-size:32px;
+        }
 
-}
+        .container{
 
-/* MAIN */
+            width:90%;
 
-.container{
+            margin:auto;
 
-width:90%;
+            padding-top:60px;
 
-margin:auto;
+        }
 
-padding-top:60px;
+        .profile-card{
 
-}
+            background:
+                rgba(31,41,55,.85);
 
-/* PROFILE CARD */
+            padding:50px;
 
-.profile-card{
+            border-radius:30px;
 
-background:
-rgba(31,41,55,.85);
+            text-align:center;
 
-padding:50px;
+            box-shadow:
+                0 0 25px rgba(245,158,11,.2);
 
-border-radius:30px;
+            transition:.4s;
 
-text-align:center;
+        }
 
-box-shadow:
-0 0 25px rgba(245,158,11,.2);
+        .profile-card:hover{
 
-transition:.4s;
+            transform:translateY(-10px);
 
-}
+            box-shadow:
+                0 0 40px rgba(245,158,11,.4);
 
-.profile-card:hover{
+        }
 
-transform:
-translateY(-10px);
+        .avatar{
 
-box-shadow:
-0 0 40px rgba(245,158,11,.4);
+            width:140px;
 
-}
+            height:140px;
 
-.avatar{
+            border-radius:50%;
 
-width:140px;
+            background:#F59E0B;
 
-height:140px;
+            display:flex;
 
-border-radius:50%;
+            justify-content:center;
 
-background:#F59E0B;
+            align-items:center;
 
-display:flex;
+            font-size:60px;
 
-justify-content:center;
+            margin:auto;
 
-align-items:center;
+            margin-bottom:25px;
 
-font-size:60px;
+        }
 
-margin:auto;
+        .username{
 
-margin-bottom:25px;
+            font-size:40px;
 
-}
+            font-weight:700;
 
-.username{
+        }
 
-font-size:40px;
+        .email{
 
-font-weight:700;
+            margin-top:15px;
 
-}
+            font-size:18px;
 
-.email{
+            color:#CBD5E1;
 
-margin-top:15px;
+        }
 
-font-size:18px;
+        .role{
 
-color:#CBD5E1;
+            margin-top:20px;
 
-}
+            display:inline-block;
 
-.role{
+            padding:12px 25px;
 
-margin-top:20px;
+            border-radius:20px;
 
-display:inline-block;
+            background:#10B981;
 
-padding:12px 25px;
+            font-size:18px;
 
-border-radius:20px;
+        }
 
-background:#10B981;
+        .stats{
 
-font-size:18px;
+            display:flex;
 
-}
+            gap:30px;
 
-/* STATS */
+            margin-top:50px;
 
-.stats{
+            flex-wrap:wrap;
 
-display:flex;
+        }
 
-gap:30px;
+        .stat-card{
 
-margin-top:50px;
+            flex:1;
 
-flex-wrap:wrap;
+            min-width:250px;
 
-}
+            background:
+                rgba(31,41,55,.85);
 
-.stat-card{
+            padding:35px;
 
-flex:1;
+            border-radius:25px;
 
-min-width:250px;
+            text-align:center;
 
-background:
-rgba(31,41,55,.85);
+            box-shadow:
+                0 0 20px rgba(56,189,248,.15);
 
-padding:35px;
+            transition:.4s;
 
-border-radius:25px;
+        }
 
-text-align:center;
+        .stat-card:hover{
 
-box-shadow:
-0 0 20px rgba(56,189,248,.15);
+            transform:translateY(-10px);
 
-transition:.4s;
+        }
 
-}
+        .stat-card h2{
 
-.stat-card:hover{
+            color:#38BDF8;
 
-transform:
-translateY(-10px);
+            margin-bottom:20px;
 
-}
+        }
 
-.stat-card h2{
+        .stat-card p{
 
-color:#38BDF8;
+            font-size:45px;
 
-margin-bottom:20px;
+            font-weight:700;
 
-}
+            color:#F59E0B;
 
-.stat-card p{
+        }
 
-font-size:45px;
+        .btn{
 
-font-weight:700;
+            padding:15px 30px;
 
-color:#F59E0B;
+            background:
+                linear-gradient(
+                    90deg,
+                    #F59E0B,
+                    #D97706);
 
-}
+            border:none;
 
-/* BUTTON */
+            border-radius:15px;
 
-.btn{
+            font-size:18px;
 
-padding:15px 30px;
+            color:white;
 
-background:
-linear-gradient(
-90deg,
-#F59E0B,
-#D97706);
+            cursor:pointer;
 
-border:none;
+            transition:.4s;
 
-border-radius:15px;
+            margin-top:40px;
 
-font-size:18px;
+        }
 
-color:white;
+        .btn:hover{
 
-cursor:pointer;
+            transform:translateY(-5px);
 
-transition:.4s;
+            box-shadow:
+                0 0 20px #F59E0B;
 
-margin-top:40px;
+        }
 
-}
+        footer{
 
-.btn:hover{
+            margin-top:80px;
 
-transform:
-translateY(-5px);
+            padding:30px;
 
-box-shadow:
-0 0 20px #F59E0B;
+            text-align:center;
 
-}
+            background:#0F172A;
 
-footer{
+            color:#94A3B8;
 
-margin-top:80px;
+        }
 
-padding:30px;
-
-text-align:center;
-
-background:#0F172A;
-
-color:#94A3B8;
-
-}
-
-</style>
+    </style>
 
 </head>
 
 <body>
 
-<nav>
+    <nav>
 
-<h2>
+        <h2>
 
-👤 User Profile
+            👤 User Profile
 
-</h2>
+        </h2>
 
-</nav>
+    </nav>
 
-<div class="container">
+    <div class="container">
 
-<div class="profile-card">
+        <div class="profile-card">
 
-<div class="avatar">
+            <div class="avatar">
 
-👤
+                👤
 
-</div>
+            </div>
 
-<div class="username">
+            <div class="username">
 
-{{ current_user.username }}
+                {{ current_user.username }}
 
-</div>
+            </div>
 
-<div class="email">
+            <div class="email">
 
-{{ current_user.email }}
+                {{ current_user.email }}
 
-</div>
+            </div>
 
-<div class="role">
+            <div class="role">
 
-{{ current_user.role }}
+                {{ current_user.role }}
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="stats">
+        <div class="stats">
 
-<div class="stat-card">
+            <div class="stat-card">
 
-<h2>
+                <h2>
 
-📊 Analyses
+                    📊 Analyses
 
-</h2>
+                </h2>
 
-<p>
+                <p>
 
-{{ current_user.analyses_count }}
+                    {{ current_user.analyses_count }}
 
-</p>
+                </p>
 
-</div>
+            </div>
 
-<div class="stat-card">
+            <div class="stat-card">
 
-<h2>
+                <h2>
 
-📅 Joined
+                    📅 Joined
 
-</h2>
+                </h2>
 
-<p>
+                <p>
 
-{{ created_date }}
+                    {{ created_date }}
 
-</p>
+                </p>
 
-</div>
+            </div>
 
-<div class="stat-card">
+            <div class="stat-card">
 
-<h2>
+                <h2>
 
-🛡️ Role
+                    🛡️ Role
 
-</h2>
+                </h2>
 
-<p>
+                <p>
 
-{{ current_user.role }}
+                    {{ current_user.role }}
 
-</p>
+                </p>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<a href="{{ url_for('index') }}">
+        <a href="{{ url_for('index') }}">
 
-<button class="btn">
+            <button class="btn">
 
-🏠 Dashboard
+                🏠 Dashboard
 
-</button>
+            </button>
 
-</a>
+        </a>
 
-</div>
+    </div>
 
-<footer>
+    <footer>
 
-© 2026 RiskLens |
-AI Powered Employee Safety Analytics
+        © 2026 RiskLens | AI Powered Employee Safety Analytics
 
-</footer>
+    </footer>
 
 </body>
 
